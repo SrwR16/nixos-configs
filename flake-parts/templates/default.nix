@@ -64,5 +64,34 @@ _: {
       path = ./php; # PHP
       description = "Development environment for PHP";
     };
+
+    # ========================================
+    # DEVOPS TEMPLATES
+    # ========================================
+
+    devops = {
+      path = ./devops;
+      description = "Comprehensive DevOps environment with kubectl, terraform, ansible, cloud CLIs, and monitoring tools";
+    };
+
+    kubernetes = {
+      path = ./kubernetes;
+      description = "Kubernetes development environment with kubectl, helm, k9s, and cluster management tools";
+    };
+
+    terraform = {
+      path = ./terraform;
+      description = "Terraform/IaC environment with terraform, opentofu, tfsec, and cloud provider CLIs";
+    };
+
+    cicd = {
+      path = ./cicd;
+      description = "CI/CD pipeline development with GitHub Actions, GitLab CI, and container security scanning";
+    };
+
+    cloud = {
+      path = ./cloud;
+      description = "Multi-cloud development environment with AWS, GCP, Azure, and DigitalOcean CLIs";
+    };
   };
 }
