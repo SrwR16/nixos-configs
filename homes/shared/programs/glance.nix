@@ -23,6 +23,18 @@ in {
       description = "Port for Glance dashboard web interface";
     };
 
+    browser = mkOption {
+      type = types.str;
+      default = "xdg-open";
+      description = "Browser command to use for opening the dashboard";
+    };
+
+    location = mkOption {
+      type = types.str;
+      default = "New York, US";
+      description = "Location for weather widget (e.g., 'London, UK')";
+    };
+
     theme = mkOption {
       type = types.submodule {
         options = {
@@ -151,7 +163,7 @@ in {
               widgets = [
                 {
                   type = "weather";
-                  location = "Your City, Country"; # Change to your location
+                  location = cfg.location;
                   units = "metric";
                 }
                 {
@@ -220,7 +232,7 @@ in {
     xdg.desktopEntries.glance = {
       name = "Glance Dashboard";
       comment = "Personal DevOps dashboard";
-      exec = "${pkgs.firefox}/bin/firefox http://localhost:${toString cfg.port}";
+      exec = "${cfg.browser} http://localhost:${toString cfg.port}";
       icon = "dashboard";
       categories = [ "Network" "Monitor" "System" ];
       terminal = false;
@@ -228,14 +240,14 @@ in {
 
     # Convenient shell aliases
     programs.bash.shellAliases = lib.mkIf config.programs.bash.enable {
-      dashboard = "firefox http://localhost:${toString cfg.port}";
+      dashboard = "${cfg.browser} http://localhost:${toString cfg.port}";
       glance-logs = "journalctl --user -u glance -f";
       glance-restart = "systemctl --user restart glance";
       glance-status = "systemctl --user status glance";
     };
 
     programs.zsh.shellAliases = lib.mkIf config.programs.zsh.enable {
-      dashboard = "firefox http://localhost:${toString cfg.port}";
+      dashboard = "${cfg.browser} http://localhost:${toString cfg.port}";
       glance-logs = "journalctl --user -u glance -f";
       glance-restart = "systemctl --user restart glance";
       glance-status = "systemctl --user status glance";

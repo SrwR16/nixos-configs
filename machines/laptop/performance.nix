@@ -57,7 +57,13 @@
     "nowatchdog"                                  # Disable watchdog (faster boot)
     
     # Security vs Performance trade-off
-    # ONLY for development machines!
+    # WARNING: DO NOT ENABLE ON PRODUCTION SYSTEMS!
+    # Disabling mitigations re-enables vulnerabilities including:
+    # - Spectre (CVE-2017-5753, CVE-2017-5715)
+    # - Meltdown (CVE-2017-5754)
+    # - L1TF (CVE-2018-3615, CVE-2018-3620, CVE-2018-3646)
+    # - MDS/Zombieload (CVE-2018-12126, CVE-2018-12127, CVE-2018-12130, CVE-2019-11091)
+    # Only consider for isolated development VMs with no sensitive data.
     # "mitigations=off"                           # Disable CPU mitigations (UNSAFE)
   ];
 
