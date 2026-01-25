@@ -46,6 +46,12 @@ in {
       };
     };
 
+    # this allows libvirt to use pulseaudio socket
+    # which is useful for virt-manager
+    hardware.pulseaudio.extraConfig = ''
+      load-module module-native-protocol-unix auth-group=qemu-libvirtd socket=/tmp/pulse-socket
+    '';
+
     # additional kernel modules that may be needed by libvirt
     boot.kernelModules = [
       "vfio-pci"
