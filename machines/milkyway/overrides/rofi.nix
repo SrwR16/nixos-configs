@@ -12,7 +12,7 @@ in {
   home-manager.users.xi = {
     programs.rofi = {
       enable = true;
-      package = pkgs.rofi-wayland.override {
+      package = pkgs.rofi.override {
         plugins = [
           pkgs.rofi-rbw-wayland
         ];
