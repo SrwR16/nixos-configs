@@ -92,6 +92,8 @@ in {
 
   # Add my SSH keys to initrd for remote unlocking. Backdoor?!
   boot.initrd.network.ssh.authorizedKeys = [keys.xi];
+  # Avoid conflicts with GNOME's gcr ssh agent; on Hyprland we use the standard ssh-agent.
+  services.gnome.gcr-ssh-agent.enable = lib.mkForce false;
   programs.ssh = let
     # a list of hosts that are connected over Tailscale
     # it would be better to construct this list dynamically

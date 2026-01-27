@@ -14,17 +14,11 @@
 
       # kill process that are not confined but have apparmor profiles enabled
       killUnconfinedConfinables = true;
-      packages = [pkgs.apparmor-profiles];
-
-      #TODO: for some reason, these profiles are not being applied, even though they are loaded and enforced
-      # apparmor policies
-      policies = {
-        "bin.chrome" = {
-          enable = true;
-          enforce = true;
-          profile = builtins.readFile ./profiles/chrome;
-        };
-      };
+      packages = [
+        pkgs.apparmor-profiles
+        # custom chrome profile
+        (pkgs.writeTextDir "etc/apparmor.d/bin.chrome" (builtins.readFile ./profiles/chrome))
+      ];
     };
 
     environment.systemPackages = with pkgs; [

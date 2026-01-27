@@ -3,15 +3,21 @@
   inherit (lib.attrsets) mapAttrs;
 in {
   systemd = let
-    extraConfig = ''
+    managerSettings = {
+      DefaultTimeoutStartSec = "15s";
+      DefaultTimeoutStopSec = "15s";
+      DefaultTimeoutAbortSec = "15s";
+      DefaultDeviceTimeoutSec = "15s";
+    };
+    userExtraConfig = ''
       DefaultTimeoutStartSec=15s
       DefaultTimeoutStopSec=15s
       DefaultTimeoutAbortSec=15s
       DefaultDeviceTimeoutSec=15s
     '';
   in {
-    inherit extraConfig;
-    user = {inherit extraConfig;};
+    settings.Manager = managerSettings;
+    user.extraConfig = userExtraConfig;
 
     # Disable all virtual terminals. I usually don't need to switch between
     # TTYs, however, I may get locked out of my desktop session and this

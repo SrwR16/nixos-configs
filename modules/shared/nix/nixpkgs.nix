@@ -1,5 +1,5 @@
 # Original Code by NotAShelf - https://github.com/notashelf/nyx
-{ inputs', ... }: {
+{ inputs', lib, ... }: {
   # Global nixpkgs configuration. This is ignored if nixpkgs.pkgs is set
   # which is a case that should be avoided. Everything that is set to configure
   # nixpkgs must go here.

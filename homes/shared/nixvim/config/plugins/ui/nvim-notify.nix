@@ -1,11 +1,13 @@
 {
   programs.nixvim.plugins.notify = {
     enable = true;
-    backgroundColour = "#000000";
-    fps = 60;
-    render = "default";
-    timeout = 1000;
-    topDown = true;
+    settings = {
+      background_colour = "#000000";
+      fps = 60;
+      render = "default";
+      timeout = 1000;
+      top_down = true;
+    };
   };
   programs.nixvim.keymaps = [
     {

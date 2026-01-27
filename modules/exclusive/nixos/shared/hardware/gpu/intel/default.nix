@@ -9,7 +9,7 @@
   dev = config.modules.device;
 
   # let me play youtube videos without h.264, please and thank you
-  vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
+  vaapiIntel = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
 in {
   config = mkIf (builtins.elem dev.gpu.type ["intel" "hybrid-intel"]) {
     # enable the i915 kernel module
@@ -23,7 +23,7 @@ in {
         intel-compute-runtime
         intel-media-driver
         vaapiIntel
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
       ];
 
@@ -31,7 +31,7 @@ in {
         # intel-compute-runtime # FIXME does not build due to unsupported system
         intel-media-driver
         vaapiIntel
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
       ];
     };

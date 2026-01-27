@@ -28,7 +28,6 @@
 in {
   services.greetd = {
     enable = true;
-    vt = 2;
     restart = true;
 
     # <https://man.sr.ht/~kennylevinsen/greetd/>
