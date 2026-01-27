@@ -42,10 +42,11 @@
   # Write the variables.scss file
   variablesScssFile = pkgs.writeText "variables.scss" variablesScss;
 in {
-  imports = [inputs.anyrun.homeManagerModules.default];
   config = mkIf env.programs.anyrun.enable {
     programs.anyrun = {
       enable = true;
+      # Keep anyrun + plugins sourced from the same flake input to avoid version skew.
+      package = inputs'.anyrun.packages.anyrun;
       config = {
         plugins = with inputs'.anyrun.packages; [
           applications

@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   inputs',
   ...
 }: let
@@ -11,14 +12,10 @@
 
   inherit (cfg.reposilite.settings) port;
 in {
-  imports = [
-    ./reposilite-option.nix
-  ];
-
   config = mkIf config.services.reposilite.enable {
     services.reposilite = {
-      package = inputs'.nyxpkgs.packages.reposilite-bin;
-      dataDir = "/var/lib/reposilite";
+      package = pkgs.reposilite;
+      workingDirectory = "/var/lib/reposilite";
 
       openFirewall = true;
 

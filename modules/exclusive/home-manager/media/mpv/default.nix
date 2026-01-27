@@ -22,7 +22,7 @@ in {
         sponsorblock # skip sponsored segments
         uosc # proximity UI
         quality-menu # ytdl-format quality menu
-        seekTo # seek to specific pos.
+        occivink.seekTo # seek to specific pos.
 
         # from nyxpkgs
         # inputs'.nyxpkgs.packages.mpv-history # save a history of played files with timestamps
