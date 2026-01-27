@@ -2,9 +2,9 @@
   modules.device = {
     type = "laptop";
     cpu = {
-      type = "amd";
+      type = "intel";
     };
-    gpu.type = "hybrid-nv"; # "null";
+    gpu.type = "intel"; # "null";
     monitors = ["eDP-1"];
     hasBluetooth = true;
     hasSound = true;
