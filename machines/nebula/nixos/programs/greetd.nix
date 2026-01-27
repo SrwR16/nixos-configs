@@ -17,7 +17,7 @@
   defaultSession = {
     user = "greeter";
     command = concatStringsSep " " [
-      (getExe pkgs.greetd.tuigreet)
+      (getExe pkgs.tuigreet)
       "--time"
       "--remember"
       "--remember-user-session"

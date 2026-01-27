@@ -11,13 +11,13 @@
         suppress_on_insert = true;
         ignore_done_already = false;
         ignore_empty_message = false;
-        clear_on_detach = ''
+        clear_on_detach.__raw = ''
           function(client_id)
             local client = vim.lsp.get_client_by_id(client_id)
             return client and client.name or nil
           end
         '';
-        notification_group = ''
+        notification_group.__raw = ''
           function(msg) return msg.lsp_client.name end
         '';
         ignore = [ ];
@@ -29,7 +29,7 @@
           done_ttl = 3;
           done_icon = "✔";
           done_style = "Constant";
-          progress_ttl = "math.huge";
+          progress_ttl.__raw = "math.huge";
           progress_icon = {
             pattern = "dots";
             period = 1;
@@ -39,13 +39,11 @@
           icon_style = "Question";
           priority = 30;
           skip_history = true;
-          format_message = ''
-            require ("fidget.progress.display").default_format_message
-          '';
-          format_annote = ''
+          format_message.__raw = "require('fidget.progress.display').default_format_message";
+          format_annote.__raw = ''
             function (msg) return msg.title end
           '';
-          format_group_name = ''
+          format_group_name.__raw = ''
             function (group) return tostring (group) end
           '';
           overrides = {
@@ -60,7 +58,7 @@
         filter = "info";
         history_size = 128;
         override_vim_notify = true;
-        redirect = ''
+        redirect.__raw = ''
           function(msg, level, opts)
             if opts and opts.on_open then
               return require("fidget.integration.nvim-notify").delegate(msg, level, opts)
@@ -68,7 +66,7 @@
           end
         '';
         configs = {
-          default = "require('fidget.notification').default_config";
+          default.__raw = "require('fidget.notification').default_config";
         };
         window = {
           normal_hl = "Comment";
